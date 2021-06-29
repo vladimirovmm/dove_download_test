@@ -18,7 +18,7 @@ jobs:
       - name: access
         run: sudo chown runner ./dove_download.sh && chmod +x ./dove_download.sh
       - name: run ubuntu
-        run: ./dove_download.sh
+        run: bash ./dove_download.sh
 
 
 
