@@ -6,35 +6,35 @@ on:
       - master
 
 jobs:
-  ubuntu:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-
-    steps:
-      - uses: actions/checkout@v1
-      - name: access
-        run: sudo chown runner ./dove_download.sh && chmod +x ./dove_download.sh
-      - name: run on ubuntu
-        run: bash ./dove_download.sh
-      - name: test
-        run: dove -V
-
-  macos:
-    runs-on: macos-latest
-    defaults:
-      run:
-        shell: bash
-
-    steps:
-      - uses: actions/checkout@v1
-      - name: access
-        run: sudo chown runner ./dove_download.sh && chmod +x ./dove_download.sh
-      - name: run on macos
-        run: bash ./dove_download.sh
-      - name: test
-        run: dove -V
+#  ubuntu:
+#    runs-on: ubuntu-latest
+#    defaults:
+#      run:
+#        shell: bash
+#
+#    steps:
+#      - uses: actions/checkout@v1
+#      - name: access
+#        run: sudo chown runner ./dove_download.sh && chmod +x ./dove_download.sh
+#      - name: run on ubuntu
+#        run: bash ./dove_download.sh
+#      - name: test
+#        run: dove -V
+#
+#  macos:
+#    runs-on: macos-latest
+#    defaults:
+#      run:
+#        shell: bash
+#
+#    steps:
+#      - uses: actions/checkout@v1
+#      - name: access
+#        run: sudo chown runner ./dove_download.sh && chmod +x ./dove_download.sh
+#      - name: run on macos
+#        run: bash ./dove_download.sh
+#      - name: test
+#        run: dove -V
 
   windows:
       runs-on: windows-latest
