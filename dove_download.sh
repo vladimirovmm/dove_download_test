@@ -60,8 +60,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 elif [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
     cp $filename "dove.exe"
     export PATH=$PATH:`pwd`
-
-    powershell -v
+    powershell -Command {\$env:Path += "`pwd`"}
 else
     echo "Unknown OS"
     exit 2
