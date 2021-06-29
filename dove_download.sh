@@ -66,4 +66,6 @@ else
 fi
 echo "{dove}={`pwd`/$filename}" >> $GITHUB_ENV
 
+echo $PATH
+
 dove -V
