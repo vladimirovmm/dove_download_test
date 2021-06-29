@@ -43,6 +43,7 @@ if [ ! -e $filename ]; then
     -o $filename \
     -s $download_url
 fi
+filename="./$filename"
 ls
 echo "$filename -V"
 chmod +x $filename
