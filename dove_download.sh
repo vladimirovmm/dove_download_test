@@ -57,7 +57,7 @@ if [[ "$OSTYPE" == "linux-gnu"* || "$OSTYPE" == "freebsd"* || "$OSTYPE" == "cygw
         echo "Failed to create a link"
     fi
 elif [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
-    ln -sf "$(pwd)/$filename" "$PROGRAMFILES\dove.exe"
+    PATH=%PATH%;"$(pwd)/$filename"
     echo "create alias windows"
 else
     echo "Unknown OS"
