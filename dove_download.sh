@@ -59,16 +59,14 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     fi
 elif [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
     cp $filename "dove.exe"
-#    export PATH=$PATH:`pwd`
-    export PATH=$(echo $PATH:`pwd` | sed -e 's/:$//g')
-
-#    pp="powershell -Command '{\$env:Path += \"`pwd`\"}'"
-#    echo $pp;
-#    $($pp)
+    export PATH=$PATH:`pwd`
 else
     echo "Unknown OS"
     exit 2
 fi
+echo "{dove}={`pwd`/$filename}" >> $GITHUB_ENV
+
+
 #
 #pp="powershell -Command '{\$env:Path += \"`pwd`\"}'"
 #echo $pp;
