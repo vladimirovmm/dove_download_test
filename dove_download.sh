@@ -67,5 +67,3 @@ fi
 
 dove -V
 dove.exe -V
-
-ls
