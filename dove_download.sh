@@ -41,9 +41,11 @@ if [ ! -e $filename ]; then
     -s $download_url
 fi
 
+echo "chmod 1755 $filename"
 chmod 1755 $filename
+
+echo "create link $(pwd)/$filename"
 if [[ "$OSTYPE" == "linux-gnu"* || "$OSTYPE" == "freebsd"* || "$OSTYPE" == "cygwin" ]]; then
-    echo "create link $(pwd)/$filename"
     mkdir -p /home/$USER/.local/bin
     ln -sf "$(pwd)/$filename" /home/$USER/.local/bin/dove
 elif [[ "$OSTYPE" == "darwin"* ]]; then
@@ -56,22 +58,18 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
         echo "Failed to create a link"
     fi
 elif [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
-    echo "add to PATH `pwd`"
-    cp $filename "dove.exe"
-    export PATH=$PATH:`pwd`
+    mkdir -p "$HOME/.local/bin"
+    ln -sf "$(pwd)/$filename" "$HOME/.local/bin/dove"
+    echo "$HOME/.local/bin" >> $GITHUB_PATH
 else
     echo "Unknown OS"
     exit 2
 fi
-echo "{dove}={`pwd`/$filename}" >> $GITHUB_ENV
-echo "$HOME/`pwd`/$filename" >> $GITHUB_PATH
 
-mkdir -p "$HOME/.local/bin"
-ln -sf "$(pwd)/$filename" "$HOME/.local/bin/dove"
-echo "$HOME/.local/bin" >> $GITHUB_PATH
-ls $HOME/.local/bin
+#echo "{dove}={`pwd`/$filename}" >> $GITHUB_ENV
+#echo "$HOME/`pwd`/$filename" >> $GITHUB_PATH
 
-echo "run: $filename -V"
 
+
+echo "run: dove -V"
 dove -V
-dove.exe -V
