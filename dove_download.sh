@@ -59,6 +59,12 @@ if [[ "$OSTYPE" == "linux-gnu"* || "$OSTYPE" == "freebsd"* || "$OSTYPE" == "cygw
 elif [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
     cp $filename "dove.exe"
     export PATH=$PATH:`pwd`
+
+    $env:DOVE = "$(pwd)/$filename"
+    $env:PATH += ";$env:DOVE"
+    $env:PATH += ";$env:DOVE\sbin"
+    echo $env:DOVE;
+    echo $env:PATH;
 else
     echo "Unknown OS"
     exit 2
