@@ -48,10 +48,8 @@ jobs:
         run: bash ./dove_download.sh
       - name: path
         run: echo $PATH
-      - name: path
-        run: echo $DOVE
       - name: test
-        run: dove.exe -V
+        run: dove -V
         shell: bash
 
 
