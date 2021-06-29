@@ -29,8 +29,12 @@ jobs:
       - uses: actions/checkout@v1
       - name: access
         run: sudo chown runner ./dove_download.sh && chmod +x ./dove_download.sh
-      - name: run on ubuntu
+      - name: run on macos
         run: bash ./dove_download.sh
+      - name: run dove
+        run: dove
+      - name: run dove
+        run: ./dove
 
 #  windows:
 #      runs-on: windows-latest
