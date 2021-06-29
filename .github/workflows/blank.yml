@@ -21,6 +21,12 @@ jobs:
       - name: dir
         run: dir
 
+      - name: dir
+        run: dir ../
+
+      - name: ls
+        run: ls
+
       - name: run ubuntu
         run: cat ./dove_download.sh
 
