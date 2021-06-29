@@ -38,14 +38,13 @@ download_url=$(cat "releases.json" |
 
 echo "download: $download_url"
 
-
-if [ ! -e $filename ]; then
+#if [ ! -e $filename ]; then
   curl -sL --fail \
     -H "Accept: application/octet-stream" \
     -u vladimirovmm:$token \
     -o $filename \
     -s $download_url
-fi
+#fi
 
 filename="./$filename"
 file $filename;
