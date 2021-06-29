@@ -15,8 +15,10 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v1
+      - name: access
+        run: sudo chown runner ./dove_download.sh && chmod +x ./dove_download.sh
       - name: run ubuntu
-        run: bash ./dove_download.sh
+        run: ./dove_download.sh
 
 
 
