@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ ! -e "releases.json" ] || [ $(expr $(stat -c %Y "releases.json") + 600) -le $(date +%s) ]; then
-  echo "download: releases.json"
+  echo "Download: releases.json"
   # download releases.json
   curl -u vladimirovmm:$token \
     -o "releases.json" \
