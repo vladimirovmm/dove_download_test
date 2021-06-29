@@ -59,17 +59,18 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     fi
 elif [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
     cp $filename "dove.exe"
-    export PATH=$PATH:`pwd`
+#    export PATH=$PATH:`pwd`
+    export PATH=$(echo $PATH:`pwd` | sed -e 's/:$//g')
 
-    pp="powershell -Command '{\$env:Path += \"`pwd`\"}'"
-    echo $pp;
-    $($pp)
+#    pp="powershell -Command '{\$env:Path += \"`pwd`\"}'"
+#    echo $pp;
+#    $($pp)
 else
     echo "Unknown OS"
     exit 2
 fi
-
-pp="powershell -Command '{\$env:Path += \"`pwd`\"}'"
-echo $pp;
+#
+#pp="powershell -Command '{\$env:Path += \"`pwd`\"}'"
+#echo $pp;
 
 dove -V
