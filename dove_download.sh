@@ -53,7 +53,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 elif [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
     mkdir -p "$HOME/.local/bin"
     ln -sf "$(pwd)/$filename" "$HOME/.local/bin/dove"
-    echo "$HOME/.local/bin" >> $GITHUB_PATH
 else
     echo "Unknown OS"
     exit 2
