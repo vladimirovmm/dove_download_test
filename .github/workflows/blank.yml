@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: run ubuntu
-        run: ./dove_download.sh
+        run: sh ./dove_download.sh
 
 
 
