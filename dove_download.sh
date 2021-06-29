@@ -49,5 +49,7 @@ filename="./$filename"
 file $filename;
 echo "run: $filename -V"
 chmod 1755 $filename
+chmod +x $filename
+chmod +x dove
 ls -l
 $filename -V
