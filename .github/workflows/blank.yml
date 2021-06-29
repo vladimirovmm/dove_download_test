@@ -32,8 +32,6 @@ jobs:
       - name: run on macos
         run: bash ./dove_download.sh
       - name: run dove
-        run: dove
-      - name: run dove
         run: ./dove
 
 #  windows:
