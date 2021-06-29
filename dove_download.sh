@@ -63,4 +63,6 @@ else
     exit 2
 fi
 
-dove -V
+dove.exe -V
+
+ls
