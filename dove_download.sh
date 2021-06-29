@@ -2,9 +2,7 @@
 
 if [ ! -e "releases.json" ] || [ $(expr $(stat -c %Y "releases.json") + 600) -le $(date +%s) ]; then
   echo "Download: releases.json"
-  # download releases.json
-  curl -u vladimirovmm:$token \
-    -o "releases.json" \
+  curl -o "releases.json" \
     -s https://api.github.com/repos/pontem-network/move-tools/releases
 fi
 
@@ -33,10 +31,9 @@ fi
 
 filename="dove_${dove_version}-${download_type}"
 
-
 if [ ! -e $filename ]; then
   download_url=$(cat "releases.json" |
-    jq -r ".[] | select(.tag_name==\"${dove_version}\") .assets | .[] | select(.name|test(\"^dove-${dove_version}-${download_type}\")) | .browser_download_url")
+      jq -r ".[] | select(.tag_name==\"${dove_version}\") .assets | .[] | select(.name|test(\"^dove-${dove_version}-${download_type}\")) | .browser_download_url")
   echo "Download: $download_url"
   curl -sL --fail \
     -H "Accept: application/octet-stream" \
