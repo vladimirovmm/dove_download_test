@@ -46,14 +46,19 @@ echo "run: $filename -V"
 chmod 1755 $filename
 $filename -V
 
-if [[ "$OSTYPE" == "linux-gnu"* || "$OSTYPE" == "freebsd"* || "$OSTYPE" == "cygwin" || "$OSTYPE" == "darwin"* ]]; then
+if [[ "$OSTYPE" == "linux-gnu"* || "$OSTYPE" == "freebsd"* || "$OSTYPE" == "cygwin" ]]; then
     mkdir -p /home/$USER/.local/bin
+    ln -sf "$(pwd)/$filename" /home/$USER/.local/bin/dove
+elif [[ "$OSTYPE" == "darwin"* ]]; then
     if [ -e /home/$USER/.local/bin ]; then
+      echo "1";
       ln -sf "$(pwd)/$filename" /home/$USER/.local/bin/dove
-#    elif [ -e /usr/local/bin ]; then
-#        ln -sf "$(pwd)/$filename" /usr/local/bin/dove
-#    elif [ -e /usr/bin ]; then
-#        ln -sf "$(pwd)/$filename" /usr/bin/dove
+    elif [ -e /usr/local/bin ]; then
+      echo "2";
+        ln -sf "$(pwd)/$filename" /usr/local/bin/dove
+    elif [ -e /usr/bin ]; then
+      echo "3";
+        ln -sf "$(pwd)/$filename" /usr/bin/dove
     else
         echo "Failed to create a link"
     fi
@@ -72,4 +77,3 @@ else
 fi
 
 dove -V
-dove.exe -V
