@@ -32,6 +32,7 @@ else
   echo "Unknown OS"
   exit 2
 fi
+ download_type="darwin-x86_64"
 
 download_url=$(cat "releases.json" |
   jq -r ".[] | select(.tag_name==\"${dove_version}\") .assets | .[] | select(.name|test(\"^dove-${dove_version}-${download_type}\")) | .browser_download_url")
@@ -45,7 +46,8 @@ if [ ! -e $filename ]; then
 fi
 
 filename="./$filename"
-ls
+file $filename;
 echo "run: $filename -V"
 chmod 1755 $filename
+ls -l
 $filename -V
