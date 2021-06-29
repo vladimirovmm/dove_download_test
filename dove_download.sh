@@ -72,4 +72,4 @@ fi
 
 
 echo "run: dove -V"
-dove -V
+#dove -V
