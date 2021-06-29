@@ -6,13 +6,12 @@ on:
       - master
 
 jobs:
-  build:
+  ubuntu:
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v1
       - name: access
@@ -21,6 +20,21 @@ jobs:
         run: bash ./dove_download.sh
       - name: ls
         run: ls
+
+  windows:
+      runs-on: windows-latest
+      defaults:
+        run:
+          shell: bash
+
+      steps:
+        - uses: actions/checkout@v1
+        - name: access
+          run: sudo chown runner ./dove_download.sh && chmod +x ./dove_download.sh
+        - name: run ubuntu
+          run: bash ./dove_download.sh
+        - name: ls
+          run: ls
 
 
 
