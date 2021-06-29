@@ -17,6 +17,9 @@ jobs:
       - name: realpath
         run: realpath ./
 
+      - name: dir
+        run: dir
+
       - name: run ubuntu
         run: cat ./dove_download.sh
 
