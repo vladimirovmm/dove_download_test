@@ -66,10 +66,5 @@ else
     exit 2
 fi
 
-#echo "{dove}={`pwd`/$filename}" >> $GITHUB_ENV
-#echo "$HOME/`pwd`/$filename" >> $GITHUB_PATH
-
-
-
-echo "run: dove -V"
-#dove -V
+echo "run: $filename -V"
+$filename -V

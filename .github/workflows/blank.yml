@@ -46,8 +46,6 @@ jobs:
       - uses: actions/checkout@v1
       - name: run on windwows
         run: bash ./dove_download.sh
-      - name: path
-        run: echo $PATH
       - name: test
         run: dove -V
         shell: bash
