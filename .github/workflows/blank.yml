@@ -51,7 +51,7 @@ jobs:
       - name: path
         run: echo $DOVE
       - name: test
-        run: dove -V
+        run: dove.exe -V
         shell: bash
 
 

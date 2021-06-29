@@ -68,3 +68,4 @@ echo "$HOME/`pwd`/$filename" >> $GITHUB_PATH
 echo "run: $filename -V"
 
 dove -V
+dove.exe -V
