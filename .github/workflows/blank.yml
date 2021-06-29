@@ -52,7 +52,6 @@ jobs:
         run: bash ./dove_download.sh
       - name: test
         run: dove -V
-        shell: bash
 
 
 
