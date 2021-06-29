@@ -65,6 +65,7 @@ else
 fi
 echo "{dove}={`pwd`/$filename}" >> $GITHUB_ENV
 echo "$HOME/`pwd`/$filename" >> $GITHUB_PATH
+mkdir -p "$HOME/.local/bin"
 echo "$HOME/.local/bin" >> $GITHUB_PATH
 echo "run: $filename -V"
 
