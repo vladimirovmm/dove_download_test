@@ -47,7 +47,7 @@ chmod 1755 $filename
 $filename -V
 
 if [[ "$OSTYPE" == "linux-gnu"* || "$OSTYPE" == "freebsd"* || "$OSTYPE" == "cygwin" || "$OSTYPE" == "darwin"* ]]; then
-    mkdir -R /home/$USER/.local/bin
+    mkdir -p /home/$USER/.local/bin
     if [ -e /home/$USER/.local/bin ]; then
       ln -sf "$(pwd)/$filename" /home/$USER/.local/bin/dove
 #    elif [ -e /usr/local/bin ]; then
