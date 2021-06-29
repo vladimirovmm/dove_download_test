@@ -50,14 +50,9 @@ if [[ "$OSTYPE" == "linux-gnu"* || "$OSTYPE" == "freebsd"* || "$OSTYPE" == "cygw
     mkdir -p /home/$USER/.local/bin
     ln -sf "$(pwd)/$filename" /home/$USER/.local/bin/dove
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    if [ -e /home/$USER/.local/bin ]; then
-      echo "1";
-      ln -sf "$(pwd)/$filename" /home/$USER/.local/bin/dove
-    elif [ -e /usr/local/bin ]; then
-      echo "2";
+    if [ -e /usr/local/bin ]; then
         ln -sf "$(pwd)/$filename" /usr/local/bin/dove
     elif [ -e /usr/bin ]; then
-      echo "3";
         ln -sf "$(pwd)/$filename" /usr/bin/dove
     else
         echo "Failed to create a link"
@@ -66,11 +61,7 @@ elif [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
     cp $filename "dove.exe"
     export PATH=$PATH:`pwd`
 
-    $env:DOVE = "$(pwd)\$filename"
-    $env:PATH += ";$env:DOVE"
-    $env:PATH += ";$env:DOVE\sbin"
-    echo $env:DOVE;
-    echo $env:PATH;
+    powershell -v
 else
     echo "Unknown OS"
     exit 2
