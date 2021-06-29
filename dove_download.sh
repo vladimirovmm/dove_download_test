@@ -1,6 +1,7 @@
 #!/bin/bash
 
-if [ ! -e releases.json ]; then
+if [ ! -e "releases.json" ] || [ $(expr $(stat -c %Y "releases.json") + 600) -le $(date +%s) ]; then
+  echo "download: releases.json"
   # download releases.json
   curl -u vladimirovmm:$token \
     -o "releases.json" \
@@ -19,38 +20,32 @@ else
   dove_version=$1
 fi
 
-download_type=""
-filename="dove"
 if [[ "$OSTYPE" == "linux-gnu"* || "$OSTYPE" == "freebsd"* || "$OSTYPE" == "cygwin" ]]; then
-  download_type="linux-x86_64"
+  download_type="linux-$HOSTTYPE"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-  download_type="darwin-x86_64"
+  download_type="darwin-$HOSTTYPE"
 elif [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
-  download_type="win-x86_64.exe"
-  filename="dove.exe"
+  download_type="win-$HOSTTYPE.exe"
 else
   echo "Unknown OS"
   exit 2
 fi
 
-download_url=$(cat "releases.json" |
-  jq -r ".[] | select(.tag_name==\"${dove_version}\") .assets | .[] | select(.name|test(\"^dove-${dove_version}-${download_type}\")) | .browser_download_url")
+filename="dove_${dove_version}-${download_type}"
 
-echo "download: $download_url"
 
-#if [ ! -e $filename ]; then
+if [ ! -e $filename ]; then
+  download_url=$(cat "releases.json" |
+    jq -r ".[] | select(.tag_name==\"${dove_version}\") .assets | .[] | select(.name|test(\"^dove-${dove_version}-${download_type}\")) | .browser_download_url")
+  echo "Download: $download_url"
   curl -sL --fail \
     -H "Accept: application/octet-stream" \
-    -u vladimirovmm:$token \
     -o $filename \
     -s $download_url
-#fi
+fi
 
 filename="./$filename"
 file $filename;
 echo "run: $filename -V"
 chmod 1755 $filename
-chmod +x $filename
-chmod +x dove
-ls -l
 $filename -V
