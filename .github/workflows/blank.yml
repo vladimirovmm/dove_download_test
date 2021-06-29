@@ -6,18 +6,18 @@ on:
       - master
 
 jobs:
-  ubuntu:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-
-    steps:
-      - uses: actions/checkout@v1
-      - name: access
-        run: sudo chown runner ./dove_download.sh && chmod +x ./dove_download.sh
-      - name: run on ubuntu
-        run: bash ./dove_download.sh
+#  ubuntu:
+#    runs-on: ubuntu-latest
+#    defaults:
+#      run:
+#        shell: bash
+#
+#    steps:
+#      - uses: actions/checkout@v1
+#      - name: access
+#        run: sudo chown runner ./dove_download.sh && chmod +x ./dove_download.sh
+#      - name: run on ubuntu
+#        run: bash ./dove_download.sh
 
   macos:
     runs-on: macos-latest
@@ -32,16 +32,16 @@ jobs:
       - name: run on ubuntu
         run: bash ./dove_download.sh
 
-  windows:
-      runs-on: windows-latest
-      defaults:
-        run:
-          shell: bash
-
-      steps:
-        - uses: actions/checkout@v1
-        - name: run on windwows
-          run: bash ./dove_download.sh
+#  windows:
+#      runs-on: windows-latest
+#      defaults:
+#        run:
+#          shell: bash
+#
+#      steps:
+#        - uses: actions/checkout@v1
+#        - name: run on windwows
+#          run: bash ./dove_download.sh
 
 
 
