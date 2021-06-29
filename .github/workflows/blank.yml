@@ -16,8 +16,12 @@ jobs:
       - uses: actions/checkout@v1
       - name: access
         run: sudo chown runner ./dove_download.sh && chmod +x ./dove_download.sh
-      - name: run
+      - name: download latest version
         run: bash ./dove_download.sh
+      - name: test
+        run: dove -V
+      - name: download 1.2.1 version
+        run: bash ./dove_download.sh 1.2.1
       - name: test
         run: dove -V
 
@@ -31,7 +35,7 @@ jobs:
       - uses: actions/checkout@v1
       - name: access
         run: sudo chown runner ./dove_download.sh && chmod +x ./dove_download.sh
-      - name: run
+      - name: download latest version
         run: bash ./dove_download.sh
       - name: test
         run: dove -V
@@ -44,7 +48,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - name: run
+      - name: download latest version
         run: bash ./dove_download.sh
       - name: test
         run: dove -V
