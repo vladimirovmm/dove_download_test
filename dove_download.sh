@@ -32,10 +32,12 @@ else
   echo "Unknown OS"
   exit 2
 fi
- download_type="darwin-x86_64"
 
 download_url=$(cat "releases.json" |
   jq -r ".[] | select(.tag_name==\"${dove_version}\") .assets | .[] | select(.name|test(\"^dove-${dove_version}-${download_type}\")) | .browser_download_url")
+
+echo "download: $download_url"
+
 
 if [ ! -e $filename ]; then
   curl -sL --fail \
