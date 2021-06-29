@@ -15,6 +15,9 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: realpath
+        run: realpath ./
+
       - name: run ubuntu
         run: cat ./dove_download.sh
 
