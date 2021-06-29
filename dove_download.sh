@@ -41,13 +41,13 @@ if [ ! -e $filename ]; then
     -s $download_url
 fi
 
-echo "run: $filename -V"
 chmod 1755 $filename
-
 if [[ "$OSTYPE" == "linux-gnu"* || "$OSTYPE" == "freebsd"* || "$OSTYPE" == "cygwin" ]]; then
+    echo "create link $(pwd)/$filename"
     mkdir -p /home/$USER/.local/bin
     ln -sf "$(pwd)/$filename" /home/$USER/.local/bin/dove
 elif [[ "$OSTYPE" == "darwin"* ]]; then
+    echo "create link $(pwd)/$filename"
     if [ -e /usr/local/bin ]; then
         ln -sf "$(pwd)/$filename" /usr/local/bin/dove
     elif [ -e /usr/bin ]; then
@@ -56,6 +56,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
         echo "Failed to create a link"
     fi
 elif [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
+    echo "add to PATH `pwd`"
     cp $filename "dove.exe"
     export PATH=$PATH:`pwd`
 else
@@ -63,8 +64,7 @@ else
     exit 2
 fi
 echo "{dove}={`pwd`/$filename}" >> $GITHUB_ENV
-
 echo "$HOME/`pwd`/$filename" >> $GITHUB_PATH
-
+echo "run: $filename -V"
 
 dove -V
