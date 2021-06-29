@@ -58,8 +58,7 @@ if [[ "$OSTYPE" == "linux-gnu"* || "$OSTYPE" == "freebsd"* || "$OSTYPE" == "cygw
     fi
 elif [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
     cp $filename "dove.exe"
-    PATH=$PATH:`pwd`
-    echo "create alias windows"
+    export PATH=$PATH:`pwd`
 else
     echo "Unknown OS"
     exit 2
