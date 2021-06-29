@@ -44,7 +44,7 @@ if [ ! -e $filename ]; then
     -s $download_url
 fi
 
-filename="./$filename"
+#filename="./$filename"
 ls
 
 echo "run: $filename -V"
