@@ -6,50 +6,50 @@ on:
       - master
 
 jobs:
-#  ubuntu:
-#    runs-on: ubuntu-latest
-#    defaults:
-#      run:
-#        shell: bash
-#
-#    steps:
-#      - uses: actions/checkout@v1
-#      - name: access
-#        run: sudo chown runner ./dove_download.sh && chmod +x ./dove_download.sh
-#      - name: run on ubuntu
-#        run: bash ./dove_download.sh
-#      - name: test
-#        run: dove -V
-#
-#  macos:
-#    runs-on: macos-latest
-#    defaults:
-#      run:
-#        shell: bash
-#
-#    steps:
-#      - uses: actions/checkout@v1
-#      - name: access
-#        run: sudo chown runner ./dove_download.sh && chmod +x ./dove_download.sh
-#      - name: run on macos
-#        run: bash ./dove_download.sh
-#      - name: test
-#        run: dove -V
+  #  ubuntu:
+  #    runs-on: ubuntu-latest
+  #    defaults:
+  #      run:
+  #        shell: bash
+  #
+  #    steps:
+  #      - uses: actions/checkout@v1
+  #      - name: access
+  #        run: sudo chown runner ./dove_download.sh && chmod +x ./dove_download.sh
+  #      - name: run on ubuntu
+  #        run: bash ./dove_download.sh
+  #      - name: test
+  #        run: dove -V
+  #
+  #  macos:
+  #    runs-on: macos-latest
+  #    defaults:
+  #      run:
+  #        shell: bash
+  #
+  #    steps:
+  #      - uses: actions/checkout@v1
+  #      - name: access
+  #        run: sudo chown runner ./dove_download.sh && chmod +x ./dove_download.sh
+  #      - name: run on macos
+  #        run: bash ./dove_download.sh
+  #      - name: test
+  #        run: dove -V
 
   windows:
-      runs-on: windows-latest
-      defaults:
-        run:
-          shell: bash
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash
 
-      steps:
-        - uses: actions/checkout@v1
-        - name: run on windwows
-          run: bash ./dove_download.sh
-        -name: path
-          run: echo $PATH
-        -name: path
-          run: echo $DOVE
+    steps:
+      - uses: actions/checkout@v1
+      - name: run on windwows
+        run: bash ./dove_download.sh
+      -name: path
+        run: echo $PATH
+      -name: path
+        run: echo $DOVE
         - name: test
           run: dove -V
           shell: bash
