@@ -45,7 +45,6 @@ if [ ! -e $filename ]; then
 fi
 
 filename="./$filename"
-file $filename;
 echo "run: $filename -V"
 chmod 1755 $filename
 $filename -V
