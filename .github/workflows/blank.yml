@@ -47,7 +47,7 @@ jobs:
         - name: run on windwows
           run: bash ./dove_download.sh
         - name: test
-          run: dove -V
+          run: dove.exe -V
 
 
 
