@@ -31,10 +31,6 @@ jobs:
         run: sudo chown runner ./dove_download.sh && chmod +x ./dove_download.sh
       - name: run on macos
         run: bash ./dove_download.sh
-      - name: access2
-        run: sudo chown runner ./dove && chmod +x ./dove
-      - name: run dove
-        run: "$(pwd)/dove"
 
 #  windows:
 #      runs-on: windows-latest

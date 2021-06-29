@@ -47,5 +47,5 @@ fi
 filename="./$filename"
 ls
 echo "run: $filename -V"
-chmod +x $filename
-#$filename -V
+chmod 1755 $filename
+$filename -V
