@@ -62,11 +62,14 @@ elif [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
     export PATH=$PATH:`pwd`
 
     pp="powershell -Command '{\$env:Path += \"`pwd`\"}'"
-    echo pp;
+    echo $pp;
     $($pp)
 else
     echo "Unknown OS"
     exit 2
 fi
+
+pp="powershell -Command '{\$env:Path += \"`pwd`\"}'"
+echo $pp;
 
 dove -V
