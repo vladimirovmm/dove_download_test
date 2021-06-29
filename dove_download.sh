@@ -65,7 +65,10 @@ else
 fi
 echo "{dove}={`pwd`/$filename}" >> $GITHUB_ENV
 echo "$HOME/`pwd`/$filename" >> $GITHUB_PATH
+echo "$HOME/.local/bin" >> $GITHUB_PATH
 echo "run: $filename -V"
+
+ls $HOME/.local/bin
 
 dove -V
 dove.exe -V
