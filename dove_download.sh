@@ -41,10 +41,8 @@ if [ ! -e $filename ]; then
     -s $download_url
 fi
 
-filename="./$filename"
 echo "run: $filename -V"
 chmod 1755 $filename
-$filename -V
 
 if [[ "$OSTYPE" == "linux-gnu"* || "$OSTYPE" == "freebsd"* || "$OSTYPE" == "cygwin" ]]; then
     mkdir -p /home/$USER/.local/bin
