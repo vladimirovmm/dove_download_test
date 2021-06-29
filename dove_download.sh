@@ -66,9 +66,4 @@ else
 fi
 echo "{dove}={`pwd`/$filename}" >> $GITHUB_ENV
 
-
-#
-#pp="powershell -Command '{\$env:Path += \"`pwd`\"}'"
-#echo $pp;
-
 dove -V
