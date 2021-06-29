@@ -47,12 +47,13 @@ chmod 1755 $filename
 $filename -V
 
 if [[ "$OSTYPE" == "linux-gnu"* || "$OSTYPE" == "freebsd"* || "$OSTYPE" == "cygwin" || "$OSTYPE" == "darwin"* ]]; then
+    mkdir -R /home/$USER/.local/bin
     if [ -e /home/$USER/.local/bin ]; then
       ln -sf "$(pwd)/$filename" /home/$USER/.local/bin/dove
-    elif [ -e /usr/local/bin ]; then
-        ln -sf "$(pwd)/$filename" /usr/local/bin/dove
-    elif [ -e /usr/bin ]; then
-        ln -sf "$(pwd)/$filename" /usr/bin/dove
+#    elif [ -e /usr/local/bin ]; then
+#        ln -sf "$(pwd)/$filename" /usr/local/bin/dove
+#    elif [ -e /usr/bin ]; then
+#        ln -sf "$(pwd)/$filename" /usr/bin/dove
     else
         echo "Failed to create a link"
     fi
@@ -60,7 +61,7 @@ elif [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
     cp $filename "dove.exe"
     export PATH=$PATH:`pwd`
 
-    $env:DOVE = "$(pwd)/$filename"
+    $env:DOVE = "$(pwd)\$filename"
     $env:PATH += ";$env:DOVE"
     $env:PATH += ";$env:DOVE\sbin"
     echo $env:DOVE;
