@@ -17,7 +17,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.dove
-          key: ${{ runner.os }}-dov
+          key: ${{ runner.os }}-dove
       - name: Checkout
         uses: actions/checkout@v1
       - name: access
@@ -41,7 +41,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.dove
-          key: ${{ runner.os }}-dov
+          key: ${{ runner.os }}-dove
       - name: Checkout
         uses: actions/checkout@v1
       - name: access
