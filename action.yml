@@ -15,6 +15,6 @@ runs:
         fi
       shell: bash
     - name: Download
-      run: $GITHUB_ACTION_PATH/dove_download.sh ${{input.version}}
+      run: $GITHUB_ACTION_PATH/dove_download.sh ${{inputs.version}}
       shell: bash
 
