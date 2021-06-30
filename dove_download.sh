@@ -1,6 +1,9 @@
 #!/bin/bash
 
 basefolder="$HOME/.dove"
+
+ls -l $basefolder
+
 if [ ! -e $basefolder ]; then
   echo "create dove folder: $basefolder"
   mkdir -p $basefolder;
