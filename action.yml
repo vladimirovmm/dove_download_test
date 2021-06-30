@@ -8,7 +8,11 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - run: echo "start"
+      shell: bash
     - run: ls -l ${{ github.action_path }}
+      shell: bash
+    - run: echo "end"
       shell: bash
     - run: ${{ github.action_path }}/dove_download.sh ${{ inputs.version }}
       shell: bash
