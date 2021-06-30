@@ -18,6 +18,8 @@ runs:
       shell: bash
     - run: env
       shell: bash
+    - run: echo $GITHUB_ACTION_PATH
+      shell: bash
 #    - run: ls -l ${{ github.action_path }}
 #      shell: bash
 #    - run: $GITHUB_ACTION_PATH/dove_download.sh
