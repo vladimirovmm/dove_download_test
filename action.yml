@@ -14,6 +14,6 @@ runs:
              sudo chown runner ${{ github.action_path }}/dove_download.sh && chmod +x ${{ github.action_path }}/dove_download.sh
         fi
       shell: bash
-    - run: ${{ github.action_path }}/dove_download.sh ${{ inputs.version }}
+    - run: ${{ github.action_path }}\dove_download.sh ${{ inputs.version }}
       shell: bash
 
