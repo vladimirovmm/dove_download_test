@@ -14,11 +14,13 @@ runs:
 #             sudo chown runner ${{ github.action_path }}/dove_download.sh && chmod +x ${{ github.action_path }}/dove_download.sh
 #        fi
 #      shell: bash
-    - run: echo ${{ github.action_path }}
-      shell: bash
-    - run: env
-      shell: bash
-    - run: echo $GITHUB_ACTION_PATH
+#    - run: echo ${{ github.action_path }}
+#      shell: bash
+#    - run: env
+#      shell: bash
+#    - run: echo $GITHUB_ACTION_PATH
+#      shell: bash
+    - run: ls -l $GITHUB_ACTION_PATH
       shell: bash
 #    - run: ls -l ${{ github.action_path }}
 #      shell: bash
