@@ -1,4 +1,4 @@
-name: Test Bash file
+name: Test bash file
 on:
   pull_request:
   push:

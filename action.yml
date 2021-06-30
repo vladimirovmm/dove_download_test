@@ -1,0 +1,12 @@
+name: My action
+description: Download dove
+inputs:
+  version:
+    description: Dove version
+    required: true
+    default: "latest"
+runs:
+  using: "composite"
+  steps:
+    - run: ${{ github.action_path }}/dove_download.sh ${{ inputs.version }}
+      shell: bash
