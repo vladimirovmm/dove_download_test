@@ -1,7 +1,7 @@
 name: Test bash file
 on:
   pull_request:
-  push:
+#  push:
     branches:
       - master
 

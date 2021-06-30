@@ -13,7 +13,7 @@ jobs:
         shell: bash
     steps:
       - name: Dove
-        uses: actions/dove_download@master
+        uses: actions/dove_download@1
 
       - name: test
         run: dove -V
