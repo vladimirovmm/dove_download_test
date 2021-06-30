@@ -39,10 +39,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Cache DOVE
-        uses: actions/cache@v2
+        uses: actions/cache@v1
         with:
-          path: |
-            $HOME/.dove
+          path: $HOME/.dove
       - name: access
         run: sudo chown runner ./dove_download.sh && chmod +x ./dove_download.sh
       - name: download latest version
