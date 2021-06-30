@@ -9,7 +9,10 @@ runs:
   using: "composite"
   steps:
     - name: access
-      run: sudo chown runner ${{ github.action_path }}/dove_download.sh && chmod +x ${{ github.action_path }}/dove_download.sh
+      run: |
+        if [ ! "$RUNNER_OS" == "Windows" ]; then
+             sudo chown runner ${{ github.action_path }}/dove_download.sh && chmod +x ${{ github.action_path }}/dove_download.sh
+        fi
       shell: bash
     - run: ${{ github.action_path }}/dove_download.sh ${{ inputs.version }}
       shell: bash
