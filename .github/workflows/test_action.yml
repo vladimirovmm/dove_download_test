@@ -25,6 +25,8 @@ jobs:
         uses: vladimirovmm/dove_download_test@master
         with:
           version: 1.2.1
+      - name: test
+        run: dove -V
 
   macos:
     runs-on: macos-latest
