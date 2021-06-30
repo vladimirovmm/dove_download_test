@@ -13,7 +13,7 @@ jobs:
         shell: bash
     steps:
       - name: Dove
-        uses: vladimirovmm/dove_download_test@v1-beta
+        uses: vladimirovmm/dove_download_test@v2
       - name: test
         run: dove -V
 #
