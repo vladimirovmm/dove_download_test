@@ -1,6 +1,6 @@
 #!/bin/bash
 
-basefolder="~/.dove"
+basefolder="$HOME/.dove"
 
 ls -l $basefolder
 
