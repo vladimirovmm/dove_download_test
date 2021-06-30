@@ -1,16 +1,17 @@
 #!/bin/bash
 
-if [ ! -e "releases.json" ] || [ $(expr $(stat -c %Y "releases.json") + 600) -le $(date +%s) ]; then
-  echo "Download: releases.json"
-  curl -o "releases.json" \
+tmpfolder=$(mktemp -d)
+releases_path="$tmpfolder/releases.json"
+
+echo "Download: releases.json"
+curl -o "$releases_path" \
     -s https://api.github.com/repos/pontem-network/move-tools/releases
-fi
 
 dove_version=""
 if [[ $1 == "latest" || $1 == "new" || $1 == "last" || -z $1 ]]; then
-  dove_version=$(cat "releases.json" | jq -r '.[0] .tag_name')
+  dove_version=$(cat "$releases_path" | jq -r '.[0] .tag_name')
 else
-  if [ ! $(cat "releases.json" |
+  if [ ! $(cat "$releases_path" |
     jq ".[] | select(.tag_name==\"${1}\") .tag_name") ]; then
     echo "{$1} The specified version of dove was not found"
     exit 1
@@ -30,39 +31,36 @@ else
 fi
 
 filename="dove_${dove_version}-${download_type}"
-
-if [ ! -e $filename ]; then
-  download_url=$(cat "releases.json" |
-      jq -r ".[] | select(.tag_name==\"${dove_version}\") .assets | .[] | select(.name|test(\"^dove-${dove_version}-${download_type}\")) | .browser_download_url")
-  if [ -z $download_url ]; then
-    echo "Releases \"dove-${dove_version}-${download_type}\" not found"
-    exit 3
-  fi
-  echo "Download: $download_url"
-  curl -sL --fail \
-    -H "Accept: application/octet-stream" \
-    -o $filename \
-    -s $download_url
+file_path="$tmpfolder/$filename"
+download_url=$(cat "$releases_path" |
+  jq -r ".[] | select(.tag_name==\"${dove_version}\") .assets | .[] | select(.name|test(\"^dove-${dove_version}-${download_type}\")) | .browser_download_url")
+if [ -z $download_url ]; then
+  echo "Releases \"dove-${dove_version}-${download_type}\" not found"
+  exit 3
 fi
+echo "Download: $download_url"
+curl -sL --fail \
+  -H "Accept: application/octet-stream" \
+  -o $file_path \
+  -s $download_url
 
-echo "chmod 1755 $filename"
-chmod 1755 $filename
+echo "chmod 1755 $file_path"
+chmod 1755 $file_path
 
-echo "create link $(pwd)/$filename"
+echo "create link $file_path"
 if [[ "$OSTYPE" == "linux-gnu"* || "$OSTYPE" == "freebsd"* || "$OSTYPE" == "cygwin" ]]; then
-    mkdir -p $HOME/.local/bin
-    ln -sf "$(pwd)/$filename" $HOME/.local/bin/dove
+  mkdir -p $HOME/.local/bin
+  ln -sf "$file_path" $HOME/.local/bin/dove
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    ln -sf "$(pwd)/$filename" /usr/local/bin/dove
+  ln -sf "$file_path" /usr/local/bin/dove
 elif [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
-    mkdir -p "$HOME/.local/bin"
-    ln -sf "$(pwd)/$filename" "$HOME/.local/bin/dove"
-    echo "$HOME/.local/bin" >> $GITHUB_PATH
+  mkdir -p "$HOME/.local/bin"
+  ln -sf "$file_path" "$HOME/.local/bin/dove"
+  echo "$HOME/.local/bin" >> $GITHUB_PATH
 else
-    echo "Unknown OS"
-    exit 2
+  echo "Unknown OS"
+  exit 2
 fi
 
-filename="./$filename"
-echo "run: $filename -V"
-$filename -V
+echo "run: $file_path -V"
+$file_path -V
