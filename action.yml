@@ -10,6 +10,10 @@ runs:
   steps:
     - run: echo "start"
       shell: bash
+    - run: ls -l
+      shell: bash
+    - run: echo "start"
+      shell: bash
     - run: ls -l ${{ github.action_path }}
       shell: bash
     - run: echo "end"
