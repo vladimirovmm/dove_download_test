@@ -8,18 +8,18 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: access
-      run: |
-        if [ ! "$RUNNER_OS" == "Windows" ]; then
-             sudo chown runner ${{ github.action_path }}/dove_download.sh && chmod +x ${{ github.action_path }}/dove_download.sh
-        fi
-      shell: bash
+#    - name: access
+#      run: |
+#        if [ ! "$RUNNER_OS" == "Windows" ]; then
+#             sudo chown runner ${{ github.action_path }}/dove_download.sh && chmod +x ${{ github.action_path }}/dove_download.sh
+#        fi
+#      shell: bash
     - run: echo ${{ github.action_path }}
       shell: bash
     - run: echo $ENV
       shell: bash
-    - run: ls -l ${{ github.action_path }}
-      shell: bash
-    - run: $GITHUB_ACTION_PATH/dove_download.sh
-      shell: bash
+#    - run: ls -l ${{ github.action_path }}
+#      shell: bash
+#    - run: $GITHUB_ACTION_PATH/dove_download.sh
+#      shell: bash
 
