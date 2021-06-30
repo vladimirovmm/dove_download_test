@@ -46,8 +46,8 @@ chmod 1755 $filename
 
 echo "create link $(pwd)/$filename"
 if [[ "$OSTYPE" == "linux-gnu"* || "$OSTYPE" == "freebsd"* || "$OSTYPE" == "cygwin" ]]; then
-    mkdir -p /home/$USER/.local/bin
-    ln -sf "$(pwd)/$filename" /home/$USER/.local/bin/dove
+    mkdir -p $HOME/.local/bin
+    ln -sf "$(pwd)/$filename" $HOME/.local/bin/dove
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     ln -sf "$(pwd)/$filename" /usr/local/bin/dove
 elif [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
