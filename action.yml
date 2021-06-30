@@ -1,4 +1,4 @@
-name: My action
+name: Download dove
 description: Download dove
 inputs:
   version:
@@ -10,10 +10,6 @@ runs:
   steps:
     - name: access
       run: sudo chown runner ${{ github.action_path }}/dove_download.sh && chmod +x ${{ github.action_path }}/dove_download.sh
-      shell: bash
-    - run: ls -l ${{ github.action_path }}
-      shell: bash
-    - run: echo "end"
       shell: bash
     - run: ${{ github.action_path }}/dove_download.sh ${{ inputs.version }}
       shell: bash
