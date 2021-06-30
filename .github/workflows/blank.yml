@@ -57,12 +57,12 @@ jobs:
         shell: bash
 
     steps:
-      - uses: actions/checkout@v1
       - name: Cache DOVE
-        uses: actions/cache@v2
+      - uses: actions/cache@v2
         with:
           path: $HOME/.dove
           key: ${{ runner.os }}-dove
+      - uses: actions/checkout@v1
       - name: download latest version
         run: bash ./dove_download.sh
       - name: test
