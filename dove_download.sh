@@ -34,6 +34,10 @@ filename="dove_${dove_version}-${download_type}"
 if [ ! -e $filename ]; then
   download_url=$(cat "releases.json" |
       jq -r ".[] | select(.tag_name==\"${dove_version}\") .assets | .[] | select(.name|test(\"^dove-${dove_version}-${download_type}\")) | .browser_download_url")
+  if [ -z $download_url ]; then
+    echo "Releases \"dove-${dove_version}-${download_type}\" not found"
+    exit 3
+  fi
   echo "Download: $download_url"
   curl -sL --fail \
     -H "Accept: application/octet-stream" \
