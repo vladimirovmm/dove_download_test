@@ -1,11 +1,17 @@
 #!/bin/bash
 
-tmpfolder=$(mktemp -d)
-releases_path="$tmpfolder/releases.json"
+basefolder="$HOME/.dove"
+if [ ! -e $basefolder ]; then
+  echo "create dove folder: $basefolder"
+  mkdir -p $basefolder;
+fi
+releases_path="$basefolder/releases.json"
 
-echo "Download: releases.json"
-curl -o "$releases_path" \
-    -s https://api.github.com/repos/pontem-network/move-tools/releases
+if [ ! -e $releases_path ] || [ $(expr $(stat -c %Y "$releases_path") + 600) -le $(date +%s) ]; then
+  echo "Download: releases.json"
+  curl -o "$releases_path" \
+      -s https://api.github.com/repos/pontem-network/move-tools/releases
+fi
 
 dove_version=""
 if [[ $1 == "latest" || $1 == "new" || $1 == "last" || -z $1 ]]; then
@@ -31,18 +37,22 @@ else
 fi
 
 filename="dove_${dove_version}-${download_type}"
-file_path="$tmpfolder/$filename"
+file_path="$basefolder/$filename"
+
 download_url=$(cat "$releases_path" |
   jq -r ".[] | select(.tag_name==\"${dove_version}\") .assets | .[] | select(.name|test(\"^dove-${dove_version}-${download_type}\")) | .browser_download_url")
 if [ -z $download_url ]; then
   echo "Releases \"dove-${dove_version}-${download_type}\" not found"
   exit 3
 fi
-echo "Download: $download_url"
-curl -sL --fail \
-  -H "Accept: application/octet-stream" \
-  -o $file_path \
-  -s $download_url
+
+if [ ! -e $file_path ]; then
+  echo "Download: $download_url"
+  curl -sL --fail \
+    -H "Accept: application/octet-stream" \
+    -o $file_path \
+    -s $download_url
+fi
 
 echo "chmod 1755 $file_path"
 chmod 1755 $file_path
