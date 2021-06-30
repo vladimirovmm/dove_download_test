@@ -60,7 +60,7 @@ jobs:
       - name: Cache
         uses: actions/cache@v2
         with:
-          path: ${{ HOME }}/.dove
+          path: ~/.dove
           key: ${{ runner.os }}-dove
       - name: Checkout
         uses: actions/checkout@v1
