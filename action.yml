@@ -7,13 +7,17 @@ inputs:
     default: "latest"
 runs:
   using: "composite"
+  defaults:
+    run:
+      shell: bash
   steps:
-    - run: echo "start"
-      shell: bash
-    - run: ls -l
-      shell: bash
-    - run: echo "start"
-      shell: bash
+    - name: Cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.dove
+        key: ${{ runner.os }}-dove
+    - name: access
+      run: sudo chown runner ${{ github.action_path }}dove_download.sh && chmod +x ${{ github.action_path }}/dove_download.sh
     - run: ls -l ${{ github.action_path }}
       shell: bash
     - run: echo "end"
