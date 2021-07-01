@@ -1,8 +1,12 @@
-name: Download dove
-description: Download dove
+name: Get dove
+description: Download `dove` tool for move-lang.
+author: Pontem Network team
+branding:
+  icon: 'sunrise'
+  color: 'purple'
 inputs:
   version:
-    description: Dove version
+    description: Dove version (ex. `1.2.2` or default `latest`).
     required: true
     default: "latest"
 runs:
