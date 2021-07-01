@@ -18,12 +18,6 @@ jobs:
           - macos-latest
           - ubuntu-latest
           - windows-latest
-  steps:
-    runs-on: ${{ matrix.os }}
-    defaults:
-      run:
-        shell: bash
-
     steps:
       - name: Cache
         uses: actions/cache@v2
