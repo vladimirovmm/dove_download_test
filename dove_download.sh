@@ -8,9 +8,7 @@ if [ ! -e $basefolder ]; then
 fi
 releases_path="$basefolder/releases.json"
 
-date "+%s"
-date -r $releases_path "+%s"
-let differencetime=$(($(date "+%s")-$(date -r $releases_path "+%s" )))
+differencetime=$(($(date "+%s")-$(date -r $releases_path "+%s" )))
 if [ ! -e $releases_path ] || [ $differencetime -ge 600 ]; then
   echo "Download: releases.json"
   curl -o "$releases_path" \
