@@ -45,6 +45,7 @@ download_url=$(cat "$releases_path" |
 
 if [ -z $download_url ]; then
   if [[ "$OSTYPE" == "darwin"* ]]; then
+      echo "find \"dove-${dove_version}-mac-${HOSTTYPE}\" not found"
       download_url=$(cat "$releases_path" |
         jq -r ".[] | select(.tag_name==\"${dove_version}\") .assets | .[] | select(.name|test(\"^dove-${dove_version}-mac-${HOSTTYPE}\")) | .browser_download_url")
   fi
