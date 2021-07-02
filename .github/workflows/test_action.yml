@@ -25,12 +25,18 @@ jobs:
           path: ~/.dove
           key: ${{ runner.os }}-dove
       - name: download latest version
-        uses: vladimirovmm/dove_download_test@main
+        uses: vladimirovmm/dove_download_test@test
       - name: test
         run: dove -V
-      - name: download 1.2.1 version
-        uses: vladimirovmm/dove_download_test@main
-        with:
-          version: 1.2.1
-      - name: test
-        run: dove -V
+#      - name: download 1.2.1 version
+#        uses: vladimirovmm/dove_download_test@test
+#        with:
+#          version: 1.2.1
+#      - name: test
+#        run: dove -V
+#      - name: download 1.1.4 version
+#        uses: vladimirovmm/dove_download_test@test
+#        with:
+#          version: 1.1.4
+#      - name: test
+#        run: dove -V
