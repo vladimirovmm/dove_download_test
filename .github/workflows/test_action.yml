@@ -34,3 +34,9 @@ jobs:
           version: 1.2.1
       - name: test
         run: dove -V
+      - name: download 1.1.4 version
+        uses: vladimirovmm/dove_download_test@master
+        with:
+          version: 1.1.4
+      - name: test
+        run: dove -V
