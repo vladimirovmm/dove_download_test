@@ -18,7 +18,7 @@ if [ ! -e $releases_path ] || [ $(($(date "+%s")-$(date -r $releases_path "+%s" 
         -s https://api.github.com/repos/pontem-network/move-tools/releases
   else
     curl -o "$releases_path" \
-        -H "Authorization: Bearer ${2}" \
+        -H "Authorization: token ${2}" \
         -s https://api.github.com/repos/pontem-network/move-tools/releases
   fi
 fi
