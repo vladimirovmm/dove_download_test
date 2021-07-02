@@ -43,11 +43,14 @@ jobs:
     defaults:
       run:
         shell: bash
+
     steps:
       - name: download 1.1.4 version
         uses: vladimirovmm/dove_download_test@test
         with:
           version: 1.1.4
           secret: ${{ secrets.SECRET_TOKEN }}
+        env:
+          SECRET_TOKEN: ${{ secrets.SECRET_TOKEN }}
       - name: test
         run: dove -V
