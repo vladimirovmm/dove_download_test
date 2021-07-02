@@ -42,9 +42,16 @@ file_path="$basefolder/$filename"
 
 download_url=$(cat "$releases_path" |
   jq -r ".[] | select(.tag_name==\"${dove_version}\") .assets | .[] | select(.name|test(\"^dove-${dove_version}-${download_type}\")) | .browser_download_url")
+
 if [ -z $download_url ]; then
-  echo "Releases \"dove-${dove_version}-${download_type}\" not found"
-  exit 3
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+      download_url=$(cat "$releases_path" |
+        jq -r ".[] | select(.tag_name==\"${dove_version}\") .assets | .[] | select(.name|test(\"^dove-${dove_version}-darwin-${HOSTTYPE}\")) | .browser_download_url")
+  fi
+  if [ -z $download_url ]; then
+    echo "Releases \"dove-${dove_version}-${download_type}\" not found"
+    exit 3
+  fi
 fi
 
 if [ ! -e $file_path ]; then
