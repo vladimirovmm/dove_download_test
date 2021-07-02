@@ -3,40 +3,70 @@ on:
   pull_request:
   push:
     branches:
-      - master
+      - main
 
 jobs:
-  tests:
-    runs-on: ${{ matrix.os }}
-    defaults:
-      run:
-        shell: bash
-    strategy:
-      fail-fast: true
-      matrix:
-        os:
-          - macos-latest
-          - ubuntu-latest
-          - windows-latest
-    steps:
-      - name: Cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.dove
-          key: ${{ runner.os }}-dove
-      - name: download latest version
-        uses: vladimirovmm/dove_download_test@test
-      - name: test
-        run: dove -V
+#  tests:
+#    runs-on: ${{ matrix.os }}
+#    defaults:
+#      run:
+#        shell: bash
+#    strategy:
+#      fail-fast: true
+#      matrix:
+#        os:
+#          - macos-latest
+#          - ubuntu-latest
+#          - windows-latest
+#    steps:
+#      - name: Cache
+#        uses: actions/cache@v2
+#        with:
+#          path: ~/.dove
+#          key: ${{ runner.os }}-dove
+#      - name: download latest version
+#        uses: vladimirovmm/dove_download_test@test
+#        with:
+#          secret: ${{ secrets.SECRET_TOKEN }}
+#      - name: test
+#        run: dove -V
 #      - name: download 1.2.1 version
 #        uses: vladimirovmm/dove_download_test@test
 #        with:
 #          version: 1.2.1
+#          secret: ${{ secrets.SECRET_TOKEN }}
 #      - name: test
 #        run: dove -V
+  ubuntu_test_for_1_1_4:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: download 1.1.4 version
+        uses: vladimirovmm/dove_download_test@test
+        with:
+          version: 1.1.4
+          secret: ${{ secrets.API_KEY }}
+        env:
+          SECRET_TOKEN: ${{ secrets.API_KEY }}
+      - name: test
+        run: dove -V
+      - run: echo ${{ secrets.API_KEY }}
+#  macos_test_for_1_1_4:
+#    runs-on: macos-latest
+#    defaults:
+#      run:
+#        shell: bash
+#
+#    steps:
 #      - name: download 1.1.4 version
 #        uses: vladimirovmm/dove_download_test@test
 #        with:
 #          version: 1.1.4
+#          secret: ${{ secrets.SECRET_TOKEN }}
+#        env:
+#          SECRET_TOKEN: ${{ secrets.SECRET_TOKEN }}
 #      - name: test
 #        run: dove -V
