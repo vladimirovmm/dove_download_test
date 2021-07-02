@@ -3,7 +3,7 @@ on:
   pull_request:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   tests:
@@ -25,18 +25,29 @@ jobs:
           path: ~/.dove
           key: ${{ runner.os }}-dove
       - name: download latest version
-        uses: vladimirovmm/dove_download_test@test
+        uses: pontem-network/get-dove@fix
+        with:
+          secret: ${{ secrets.SECRET_TOKEN }}
       - name: test
         run: dove -V
-#      - name: download 1.2.1 version
-#        uses: vladimirovmm/dove_download_test@test
-#        with:
-#          version: 1.2.1
-#      - name: test
-#        run: dove -V
-#      - name: download 1.1.4 version
-#        uses: vladimirovmm/dove_download_test@test
-#        with:
-#          version: 1.1.4
-#      - name: test
-#        run: dove -V
+      - name: download 1.2.1 version
+        uses: pontem-network/get-dove@fix
+        with:
+          version: 1.2.1
+          secret: ${{ secrets.SECRET_TOKEN }}
+      - name: test
+        run: dove -V
+
+  macos_test_for_1_1_4:
+    runs-on: macos-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: download 1.1.4 version
+        uses: pontem-network/get-dove@fix
+        with:
+          version: 1.1.4
+          secret: ${{ secrets.SECRET_TOKEN }}
+      - name: test
+        run: dove -V
