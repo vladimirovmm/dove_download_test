@@ -8,9 +8,7 @@ if [ ! -e $basefolder ]; then
 fi
 releases_path="$basefolder/releases.json"
 
-if [ ! -e $releases_path ] \
-    || ([[ "$OSTYPE" == "darwin"* ]] && [[ $($(date -j "+%s") - $(date "+%s" -r $releases_path)) -ge 600 ]]) \
-    || ([[ "$OSTYPE" != "darwin"* ]] && [[ $($(date "+%s") - $(date "+%s" -r $releases_path)) -ge 600 ]]); then
+if [ ! -e $releases_path ] || [[ $($(date -j "+%s") - $(date "+%s" -r $releases_path)) -ge 600 ]]; then
   echo "Download: releases.json"
   curl -o "$releases_path" \
       -s https://api.github.com/repos/pontem-network/move-tools/releases
