@@ -48,12 +48,12 @@ jobs:
         uses: vladimirovmm/dove_download_test@test
         with:
           version: 1.1.4
-          secret: ${{ secrets.SECRET_TOKEN }}
+          secret: ${{ secrets.API_KEY }}
         env:
-          SECRET_TOKEN: ${{ secrets.SECRET_TOKEN }}
+          SECRET_TOKEN: ${{ secrets.API_KEY }}
       - name: test
         run: dove -V
-      - run: echo ${{ secrets.SECRET_TOKEN }}
+      - run: echo ${{ secrets.API_KEY }}
 #  macos_test_for_1_1_4:
 #    runs-on: macos-latest
 #    defaults:
