@@ -10,8 +10,8 @@ releases_path="$basefolder/releases.json"
 
 echo "secret key: $2"
 echo "st: $SECRET_TOKEN"
-differencetime=$(($(date "+%s")-$(date -r $releases_path "+%s" )))
-if [ ! -e $releases_path ] || [ $differencetime -ge 600 ]; then
+
+if [ ! -e $releases_path ] || [ $(($(date "+%s")-$(date -r $releases_path "+%s" ))) -ge 600 ]; then
   echo "Download: releases.json"
   if [ -z $2 ]; then
     curl -o "$releases_path" \
