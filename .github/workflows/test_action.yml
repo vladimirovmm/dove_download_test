@@ -37,9 +37,8 @@ jobs:
 #          secret: ${{ secrets.SECRET_TOKEN }}
 #      - name: test
 #        run: dove -V
-
-  macos_test_for_1_1_4:
-    runs-on: macos-latest
+  ubuntu_test_for_1_1_4:
+    runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
@@ -54,3 +53,19 @@ jobs:
           SECRET_TOKEN: ${{ secrets.SECRET_TOKEN }}
       - name: test
         run: dove -V
+#  macos_test_for_1_1_4:
+#    runs-on: macos-latest
+#    defaults:
+#      run:
+#        shell: bash
+#
+#    steps:
+#      - name: download 1.1.4 version
+#        uses: vladimirovmm/dove_download_test@test
+#        with:
+#          version: 1.1.4
+#          secret: ${{ secrets.SECRET_TOKEN }}
+#        env:
+#          SECRET_TOKEN: ${{ secrets.SECRET_TOKEN }}
+#      - name: test
+#        run: dove -V
