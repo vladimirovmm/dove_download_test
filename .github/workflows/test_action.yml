@@ -16,8 +16,8 @@ jobs:
       matrix:
         os:
           - macos-latest
-#          - ubuntu-latest
-#          - windows-latest
+          - ubuntu-latest
+          - windows-latest
     steps:
       - name: Cache
         uses: actions/cache@v2
