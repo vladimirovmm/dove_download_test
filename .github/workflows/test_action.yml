@@ -16,8 +16,8 @@ jobs:
       matrix:
         os:
           - macos-latest
-          - ubuntu-latest
-          - windows-latest
+#          - ubuntu-latest
+#          - windows-latest
     steps:
       - name: Cache
         uses: actions/cache@v2
@@ -28,15 +28,15 @@ jobs:
         uses: vladimirovmm/dove_download_test@test
       - name: test
         run: dove -V
-      - name: download 1.2.1 version
-        uses: vladimirovmm/dove_download_test@test
-        with:
-          version: 1.2.1
-      - name: test
-        run: dove -V
-      - name: download 1.1.4 version
-        uses: vladimirovmm/dove_download_test@test
-        with:
-          version: 1.1.4
-      - name: test
-        run: dove -V
+#      - name: download 1.2.1 version
+#        uses: vladimirovmm/dove_download_test@test
+#        with:
+#          version: 1.2.1
+#      - name: test
+#        run: dove -V
+#      - name: download 1.1.4 version
+#        uses: vladimirovmm/dove_download_test@test
+#        with:
+#          version: 1.1.4
+#      - name: test
+#        run: dove -V
