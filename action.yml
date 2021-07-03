@@ -9,8 +9,8 @@ inputs:
     description: Dove version (ex. `1.2.2` or default `latest`).
     required: true
     default: "latest"
-  secret:
-    description: "secret: toket"
+  token:
+    description: "GITHUB_TOKEN"
     required: true
     default: ""
 runs:
@@ -23,6 +23,6 @@ runs:
         fi
       shell: bash
     - name: Download
-      run: $GITHUB_ACTION_PATH/dove_download.sh ${{inputs.version}} ${{inputs.secret}}
+      run: $GITHUB_ACTION_PATH/dove_download.sh ${{inputs.version}} ${{inputs.token}}
       shell: bash
 
