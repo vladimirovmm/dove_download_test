@@ -13,7 +13,7 @@ inputs:
     description: "GITHUB_TOKEN. Optional"
   prerelease:
     description: "Pre-release"
-    default: "true"
+    default: "false"
 runs:
   using: "composite"
   steps:

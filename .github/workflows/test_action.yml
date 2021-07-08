@@ -40,7 +40,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: test
         run: dove -V
-      - name: download 1.2.1 version
+      - name: download prerelease
         uses: ./
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
