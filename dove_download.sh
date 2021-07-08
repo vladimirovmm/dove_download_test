@@ -2,8 +2,8 @@
 
 basefolder="$HOME/.dove"
 
-echo $DOVE_DOVE_VERSION;
-echo $CURL_TOKEN;
+echo $DOVE_VERSION;
+echo $SECRET_TOKEN;
 
 if [ ! -e $basefolder ]; then
   echo "create dove folder: $basefolder"

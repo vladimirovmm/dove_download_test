@@ -21,9 +21,9 @@ runs:
         fi
       shell: bash
     - name: Download
-      run: $GITHUB_ACTION_PATH/dove_download.sh ${{inputs.version}} ${{inputs.token}}
+      run: $GITHUB_ACTION_PATH/dove_download.sh
       shell: bash
       env:
         DOVE_VERSION: ${{inputs.version}}
-        CURL_TOKEN: ${{inputs.token}}
+        SECRET_TOKEN: ${{inputs.token}}
 
