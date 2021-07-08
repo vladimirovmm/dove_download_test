@@ -10,7 +10,7 @@ inputs:
     required: true
     default: "latest"
   token:
-    description: "GITHUB_TOKEN"
+    description: "GITHUB_TOKEN. Optional"
 runs:
   using: "composite"
   steps:
@@ -23,4 +23,7 @@ runs:
     - name: Download
       run: $GITHUB_ACTION_PATH/dove_download.sh ${{inputs.version}} ${{inputs.token}}
       shell: bash
+      env:
+        DOVE_VERSION: ${{inputs.version}}
+        CURL_TOKEN: ${{inputs.token}}
 
