@@ -54,11 +54,18 @@ if [[ -z $DOVE_PRERELEASE ]]; then
   if [[ ! -z $3 ]]; then
     DOVE_PRERELEASE=$3;
   fi;
-fi;
-if [ $DOVE_PRERELEASE != "true" ] && [ $DOVE_PRERELEASE != "false" ]; then
-  DOVE_PRERELEASE="false";
+else
+  if [ $DOVE_PRERELEASE != "true" ] && [ $DOVE_PRERELEASE != "false" ]; then
+    DOVE_PRERELEASE="false";
+  fi;
 fi;
 echo "Pre-release: $DOVE_PRERELEASE";
+select_prerelease="";
+if [ $DOVE_PRERELEASE == "false" ]; then
+  select_prerelease=".prerelease==false";
+else
+  select_prerelease=".";
+fi
 # ======================================================================================================================
 # Dove version
 # ======================================================================================================================
@@ -70,13 +77,13 @@ elif [[ ! -z $1 ]]; then
 fi;
 if [[ $dove_version == "latest" || $dove_version == "new" || $dove_version == "last" || -z $dove_version ]]; then
   # Get the latest version
-  dove_version=$(cat "$releases_path" | jq -r ".[] | select(.prerelease==${DOVE_PRERELEASE}) .tag_name" | head -n1);
+  dove_version=$(cat "$releases_path" | jq -r ".[] | select(${select_prerelease}) .tag_name" | head -n1);
   if [[ -z $dove_version ]]; then
         echo "{$dove_version|$DOVE_PRERELEASE} The specified version of dove was not found";
         exit 5;
   fi
 else
-  if [ ! $(cat "$releases_path" | jq ".[] | select(.prerelease==${DOVE_PRERELEASE} and.tag_name==\"${dove_version}\") .tag_name") ]; then
+  if [ ! $(cat "$releases_path" | jq ".[] | select(${select_prerelease} and .tag_name==\"${dove_version}\") .tag_name") ]; then
     echo "{$dove_version} The specified version of dove was not found";
     exit 1;
   fi;
