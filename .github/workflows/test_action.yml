@@ -19,47 +19,45 @@ jobs:
           - ubuntu-latest
           - windows-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Cache
         uses: actions/cache@v2
         with:
           path: ~/.dove
           key: ${{ runner.os }}-dove
+
       - name: download latest version
-        uses: vladimirovmm/dove_download_test@test
+        uses: ./
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: test
         run: dove -V
+
       - name: download 1.2.1 version
-        uses: vladimirovmm/dove_download_test@test
+        uses: ./
         with:
           version: 1.2.1
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: test
         run: dove -V
-  ubuntu_test_for_1_1_4:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-
-    steps:
-      - name: download 1.1.4 version
-        uses: vladimirovmm/dove_download_test@test
+      - name: download prerelease
+        uses: ./
         with:
-          version: 1.1.4
           token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: "true"
       - name: test
         run: dove -V
+
   macos_test_for_1_1_4:
     runs-on: macos-latest
     defaults:
       run:
         shell: bash
-
     steps:
+      - uses: actions/checkout@v2
+
       - name: download 1.1.4 version
-        uses: vladimirovmm/dove_download_test@test
+        uses: ./
         with:
           version: 1.1.4
           token: ${{ secrets.GITHUB_TOKEN }}
